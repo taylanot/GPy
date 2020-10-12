@@ -60,7 +60,7 @@ def inject_plotting():
         # Already converted to new style:
         from . import gpy_plot
 
-        from ..core import GP
+        from ..core import GP, multiGP
         GP.plot_data = gpy_plot.data_plots.plot_data
         GP.plot_data_error = gpy_plot.data_plots.plot_data_error
         GP.plot_errorbars_trainset = gpy_plot.data_plots.plot_errorbars_trainset
@@ -73,6 +73,19 @@ def inject_plotting():
         GP.plot_latent = gpy_plot.gp_plots.plot_f
         GP.plot_noiseless = gpy_plot.gp_plots.plot_f
         GP.plot_magnification = gpy_plot.latent_plots.plot_magnification
+        
+        multiGP.plot_data = gpy_plot.data_plots.plot_data
+        multiGP.plot_data_error = gpy_plot.data_plots.plot_data_error
+        multiGP.plot_errorbars_trainset = gpy_plot.data_plots.plot_errorbars_trainset
+        multiGP.plot_mean = gpy_plot.gp_plots.plot_mean
+        multiGP.plot_confidence = gpy_plot.gp_plots.plot_confidence
+        multiGP.plot_density = gpy_plot.gp_plots.plot_density
+        multiGP.plot_samples = gpy_plot.gp_plots.plot_samples
+        multiGP.plot = gpy_plot.gp_plots.plot
+        multiGP.plot_f = gpy_plot.gp_plots.plot_f
+        multiGP.plot_latent = gpy_plot.gp_plots.plot_f
+        multiGP.plot_noiseless = gpy_plot.gp_plots.plot_f
+        multiGP.plot_magnification = gpy_plot.latent_plots.plot_magnification
 
         from ..models import StateSpace
         StateSpace.plot_data = gpy_plot.data_plots.plot_data

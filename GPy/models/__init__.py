@@ -25,6 +25,7 @@ In some cases one end-user model inherits another e.g.
 """
 
 from .gp_regression import GPRegression
+from .gp_regression import multiGPRegression
 from .gp_classification import GPClassification
 from .sparse_gp_regression import SparseGPRegression
 from .sparse_gp_classification import SparseGPClassification, SparseGPClassificationUncertainInput
