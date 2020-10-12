@@ -62,9 +62,9 @@ class multiGPRegression():
 
     This is a thin wrapper around the models.multiGP class, with a set of sensible defaults
 
-    :param X: input observations
-    :param Y: observed values
-    :param kernel: a GPy kernel, defaults to rbf
+    :param X: input observation list
+    :param Y: observed value list
+    :param kernel: list of GPy kernels, defaults to rbf
     :param Norm normalizer: [False]
     :param noise_var: the noise variance for Gaussian likelhood, defaults to 1.
 
@@ -134,6 +134,12 @@ class multiGPRegression():
         return ms, vs
     def optimize_restarts(self, restarts=2):
         [self.models[i].optimize_restarts(restarts) for i in range(self.nfid)]
+
+    def plot(self, index=None):
+        if index is None:
+            [self.models[i].plot() for i in range(self.nfid)]
+        else:
+            self.models[index].plot()
 
     @staticmethod
     def from_gp(gp):
