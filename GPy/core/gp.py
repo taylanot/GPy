@@ -783,12 +783,12 @@ class GP(Model):
 
 class multiGP(Model):
     """
-    General purpose Gaussian process model
+    General purpose Gaussian process model for multiple fidelities
 
-    :param X: input observations
-    :param Y: output observations
-    :param kernel: a GPy kernel, defaults to rbf+white
-    :param likelihood: a GPy likelihood
+    :param X: input observation list
+    :param Y: output observations list 
+    :param kernel: list of GPy kernels, defaults to rbf+white
+    :param likelihood: list of GPy likelihood
     :param inference_method: The :class:`~GPy.inference.latent_function_inference.LatentFunctionInference` inference method to use for this GP
     :rtype: model object
     :param Norm normalizer:

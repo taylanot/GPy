@@ -130,7 +130,7 @@ class multiGPRegression():
         vs  =   []   
         for i in range(self.nfid):
             mean, var = self.models[i].predict(Xnew) 
-            ms.append(mean); vs.append(vs)
+            ms.append(mean); vs.append(var)
         return ms, vs
     def optimize_restarts(self, restarts=2):
         [self.models[i].optimize_restarts(restarts) for i in range(self.nfid)]
