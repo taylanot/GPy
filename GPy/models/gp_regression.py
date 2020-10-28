@@ -116,8 +116,10 @@ class multiGPRegression():
     
     def __str__(self, VT100=True):
         ([print(self.models[i]) for i in range(self.nfid)])
+        scale   =   [self.models[i-1].rho for i in range(self.nfid-1)]
         model_details = [['Model', self.name],
-                         ["Number of fidelities", '{}'.format(self.nfid)]]
+                         ["Number of fidelities", '{}'.format(self.nfid)],
+                         ["Scaling Parameters", '{}'.format(scale)]]
         max_len = max(map(len, model_details))
         to_print = [""] + ["{0:{l}} : {1}".format(name, detail, l=max_len) for name, detail in model_details] 
         return "\n".join(to_print)
