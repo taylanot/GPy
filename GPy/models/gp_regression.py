@@ -112,8 +112,6 @@ class multiGPRegression():
         for i in range(1,self.nfid):
             self.models.append(multiGP(X[i], Y[i], model=self.models[i-1], kernel=kernel[i], likelihood=likelihood[i], Y_metadata=Y_metadata[i], normalizer=normalizer[i], mean_function=mean_function[i], inference_method=inference_method[i], name="fidelity-"+str(i+1)+"-multiGP"))
 
-        #self.models         =   [GP(X[i], Y[i], kernel=kernel[i], likelihood=likelihood[i], Y_metadata=Y_metadata[i], normalizer=normalizer[i], mean_function=mean_function[i], inference_method=inference_method[i], name="fidelity-"+str(i+1)+"-GP") if i==0 else  multiGP(X[i-1:i+1], Y[i-1,i+1], kernel=kernel[i], likelihood=likelihood[i], Y_metadata=Y_metadata[i], normalizer=normalizer[i], mean_function=mean_function[i], inference_method=inference_method[i], name="fidelity-"+str(i+1)+"-multiGP")  for i in range(0,self.nfid) ]
-    
     def __str__(self, VT100=True):
         ([print(self.models[i]) for i in range(self.nfid)])
         scale   =   [self.models[i-1].rho for i in range(self.nfid-1)]
@@ -134,8 +132,8 @@ class multiGPRegression():
             mean, var = self.models[i].predict(Xnew) 
             ms.append(mean); vs.append(var)
         return ms, vs
-    def optimize_restarts(self, restarts=2):
-        [self.models[i].optimize_restarts(restarts) for i in range(self.nfid)]
+    def optimize_restarts(self, restarts=10, robust=False, verbose=True, parallel=False, num_processes=None, **kwargs):
+        [self.models[i].optimize_restarts(num_restarts=restarts, robust=robust, verbose=verbose, parallel=parallel, num_processes=num_processes, **kwargs) for i in range(self.nfid)]
 
     def plot(self, index=None):
         if index is None:
