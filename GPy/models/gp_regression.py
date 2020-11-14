@@ -124,8 +124,8 @@ class multiGPRegression():
         to_print = [""] + ["{0:{l}} : {1}".format(name, detail, l=max_len) for name, detail in model_details] 
         return "\n".join(to_print)
 
-    def optimize(self):
-        [self.models[i].optimize() for i in range(self.nfid)]
+    def optimize(self,optimizer=None, start=None, messages=False, max_iters=1000, ipython_notebook=True, clear_after_finish=False, **kwargs):
+        [self.models[i].optimize(optimizer=optimizer, start=start, messages=messages, max_iters=max_iters, ipython_notebook=ipython_notebook, clear_after_finish=clear_after_finish, **kwargs) for i in range(self.nfid)]
 
     def predict(self,Xnew):
         ms  =   [] 
